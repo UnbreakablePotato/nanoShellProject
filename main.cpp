@@ -24,14 +24,17 @@ std::string handleCommands(std::vector<std::string> input){
         }
         changeDir(input[1]);
         return "";
+    }else if(input[0] == "clear"){
+        return "\033[2J\033[H";
+    }else {
+        return "";
     }
+
 }
 
-int main()
+void logo()
 {
-    while(true)
-    {
-        std::cout << "=================================================================" <<"\n";
+            std::cout << "=================================================================" <<"\n";
         std::cout << "=================================================================" <<"\n";
         std::cout << "      ___           ___           ___           ___     " << "\n";
         std::cout << "     /\\__\\         /\\  \\         /\\__\\         /\\  \\    " << "\n";
@@ -48,9 +51,15 @@ int main()
         std::cout << "=================================================================" <<"\n";
 
         std::cout << "\n";
-        
+}
 
-        std::cout << "[~/" << getPathFromHome() << "] μ ";
+int main()
+{
+    logo();
+
+    while(true)
+    {
+     std::cout << "[~/" << getPathFromHome() << "] μ ";
         
         std::string input;
         std::getline(std::cin,input);
