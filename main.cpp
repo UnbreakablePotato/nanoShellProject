@@ -34,7 +34,7 @@ std::string handleCommands(std::vector<std::string> input){
         makeDir(input[1]);
         return "";
     }else {
-        return "";
+        return "Invalid command...\n";
     }
 
 }
