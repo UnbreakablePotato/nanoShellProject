@@ -5,6 +5,7 @@
 #include "execute.hpp"
 #include <filesystem>
 #include "cd.hpp"
+#include "mkdir.hpp"
 
 std::string getPathFromHome()
 {
@@ -26,6 +27,12 @@ std::string handleCommands(std::vector<std::string> input){
         return "";
     }else if(input[0] == "clear"){
         return "\033[2J\033[H";
+    }else if(input[0] == "mkdir"){
+        if(input.size() == 1){
+            return "No name for directory provided...\n";
+        }
+        makeDir(input[1]);
+        return "";
     }else {
         return "";
     }
@@ -34,7 +41,7 @@ std::string handleCommands(std::vector<std::string> input){
 
 void logo()
 {
-            std::cout << "=================================================================" <<"\n";
+        std::cout << "=================================================================" <<"\n";
         std::cout << "=================================================================" <<"\n";
         std::cout << "      ___           ___           ___           ___     " << "\n";
         std::cout << "     /\\__\\         /\\  \\         /\\__\\         /\\  \\    " << "\n";
