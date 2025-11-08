@@ -7,6 +7,7 @@
 #include "cd.hpp"
 #include "mkdir.hpp"
 #include "pwd.hpp"
+#include "rmdir.hpp"
 
 std::string getPathFromHome()
 {
@@ -36,6 +37,12 @@ std::string handleCommands(std::vector<std::string> input){
         return "";
     }else if(input[0] == "pwd"){
         return printWorkingDir();
+    }else if(input[0] == "rmdir"){
+        if(input.size() == 1){
+            return "No name for directory provided...\n";
+        }
+        removeDir(input[1]);
+        return "";
     }else {
         return "Invalid command...\n";
     }
