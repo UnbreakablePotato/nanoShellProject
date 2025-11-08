@@ -6,6 +6,7 @@
 #include <filesystem>
 #include "cd.hpp"
 #include "mkdir.hpp"
+#include "pwd.hpp"
 
 std::string getPathFromHome()
 {
@@ -33,6 +34,8 @@ std::string handleCommands(std::vector<std::string> input){
         }
         makeDir(input[1]);
         return "";
+    }else if(input[0] == "pwd"){
+        return printWorkingDir();
     }else {
         return "Invalid command...\n";
     }
