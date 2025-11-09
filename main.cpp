@@ -8,6 +8,8 @@
 #include "mkdir.hpp"
 #include "pwd.hpp"
 #include "rmdir.hpp"
+#include "touch.hpp"
+#include "echo.hpp"
 
 std::string getPathFromHome()
 {
@@ -43,6 +45,21 @@ std::string handleCommands(std::vector<std::string> input){
         }
         removeDir(input[1]);
         return "";
+    }else if(input[0] == "touch"){
+        touchCommand(input[1]);
+        return "";
+    }else if(input[0] == "echo"){
+        if(input.size() == 2){
+            echoPrint(input[1]);
+            return "";
+        }
+        if(input[2] == ">"){
+            echoWriteToFile(input[3],input[1]);
+            return "";
+        }else if(input[2] == ">>"){
+            echoAppendToFile(input[3],input[1]);
+            return "";
+        }
     }else {
         return "Invalid command...\n";
     }
