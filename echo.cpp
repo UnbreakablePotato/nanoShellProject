@@ -20,7 +20,7 @@ void echoAppendToFile(std::string filename, std::string input)
 {
     std::ofstream file;
 
-    file.open(filename,std::ios::out);
+    file.open(filename,std::ios::out | std::ios::app);
 
     file << input;
 
