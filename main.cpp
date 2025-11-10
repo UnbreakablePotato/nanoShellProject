@@ -11,7 +11,6 @@
 #include "touch.hpp"
 #include "echo.hpp"
 
-//Testing github CLI
 
 std::string getPathFromHome()
 {
@@ -55,13 +54,23 @@ std::string handleCommands(std::vector<std::string> input){
             echoPrint(input[1]);
             return "";
         }
-        if(input[2] == ">"){
-            echoWriteToFile(input[3],input[1]);
+        int i = 2;
+        std::string concatString;
+        if(input[1] == "\""){
+            
+            while(input[i] != "\""){
+                concatString = concatString.append(input[i]).append(" ");
+                i++;
+            }
+            if(input[i+1] == ">"){
+            echoWriteToFile(input[i+2],concatString);
             return "";
-        }else if(input[2] == ">>"){
-            echoAppendToFile(input[3],input[1]);
+            }else if(input[i+1] == ">>"){
+            echoAppendToFile(input[i+2],concatString);
             return "";
         }
+        }
+        return "";
     }else {
         return "Invalid command...\n";
     }
