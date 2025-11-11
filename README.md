@@ -14,4 +14,5 @@ Both collaborators are the same person.
 - touch
 - echo
 - exit
+- clear
 
