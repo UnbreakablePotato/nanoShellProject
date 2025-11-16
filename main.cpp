@@ -10,12 +10,36 @@
 #include "rmdir.hpp"
 #include "touch.hpp"
 #include "echo.hpp"
+#include <readline/readline.h>
+#include <readline/history.h>
+#include "cmdHistory.hpp"
+
+//global string to be overwritten with readline input.
+std::string input;
 
 
 std::string getPathFromHome()
 {
     std::string string = std::filesystem::current_path();
     return string.substr(string.find_last_of("/") + 1);
+}
+
+char* getInput()
+{
+    char* line = readline("μ ");
+    if(!line){
+       
+        return line;
+    }
+
+    if(*line) {
+        add_history(line);
+    }
+
+    input = line;
+
+    free(line);
+    return line;
 }
 
 std::string handleCommands(std::vector<std::string> input){
@@ -104,10 +128,10 @@ int main()
 
     while(true)
     {
-     std::cout << "[~/" << getPathFromHome() << "] μ ";
-        
-        std::string input;
-        std::getline(std::cin,input);
+        std::cout << "[~/" << getPathFromHome() << "] ";
+
+        getInput();
+        //std::getline(std::cin,input);
 
         if(input == "exit"){
             std::cout << "Thanks for using nanoShell!" << std::endl;
@@ -115,6 +139,7 @@ int main()
         }
         
         std::vector<std::string> parsedInput = parser(input);
+        //commands(parsedInput);
         std::cout << handleCommands(parsedInput) << std::endl;
     }
 

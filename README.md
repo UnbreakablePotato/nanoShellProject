@@ -16,3 +16,8 @@ Both collaborators are the same person.
 - exit
 - clear
 
+
+
+**SUPPORTED FEATURES** <br>
+- tab completion
+- input history (bugged but functional)
